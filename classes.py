@@ -1,5 +1,6 @@
 import xml.etree.ElementTree as Xml
 
+MealList = []
 
 class Entry:
     Name = ""
