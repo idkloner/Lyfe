@@ -35,6 +35,8 @@ class MealControllerClass:
         MealTempProt = MealProtLbl.text()
         MealNotes = MealNotesLbl.text()
 
+        # Need to add commands to add temps to file.
+
         screen = MealWindow()  # returns to meals page
         screen.show()
 
