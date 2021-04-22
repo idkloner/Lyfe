@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>mainWindow</class>
+ <widget class="QMainWindow" name="mainWindow">
+  <property name="windowModality">
+   <enum>Qt::NonModal</enum>
+  </property>
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>809</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QTabWidget" name="add_the_meal_2">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>291</width>
+      <height>391</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">MealList</string>
+    </property>
+    <property name="currentIndex">
+     <number>1</number>
+    </property>
+    <widget class="QWidget" name="add_the_meal">
+     <attribute name="title">
+      <string>Add meal</string>
+     </attribute>
+     <widget class="QTableWidget" name="tableWidget">
+      <property name="geometry">
+       <rect>
+        <x>0</x>
+        <y>10</y>
+        <width>251</width>
+        <height>201</height>
+       </rect>
+      </property>
+      <row>
+       <property name="text">
+        <string>Calories</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>Sugar</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>Cholesterol</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>Protein</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>Date</string>
+       </property>
+      </row>
+      <row>
+       <property name="text">
+        <string>Time</string>
+       </property>
+      </row>
+      <column>
+       <property name="text">
+        <string>Meal</string>
+       </property>
+      </column>
+      <item row="0" column="0">
+       <property name="text">
+        <string/>
+       </property>
+       <property name="font">
+        <font>
+         <underline>true</underline>
+        </font>
+       </property>
+      </item>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="MealList">
+     <attribute name="title">
+      <string>Tab 2</string>
+     </attribute>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>809</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuMeal_Tracker">
+    <property name="title">
+     <string>Meal Tracker</string>
+    </property>
+   </widget>
+   <addaction name="menuMeal_Tracker"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="actionAdd_Meal">
+   <property name="text">
+    <string>Add Meal</string>
+   </property>
+  </action>
+  <action name="actionBack">
+   <property name="text">
+    <string>Back</string>
+   </property>
+  </action>
+  <action name="actionAdd_Meal_2">
+   <property name="text">
+    <string>Add Meal</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
