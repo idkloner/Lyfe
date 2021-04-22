@@ -4,6 +4,7 @@ class MealControllerClass:
     import sys
     from bs4 import BeautifulSoup
 
+    # Temporary variables to hold users input between UI and database.
     MealTempDate = ""  # Date of meal to be put into file
     MealTempTime = ""  # Time of meal //
     MealTempName = ""  # What the user ate to be put into file
@@ -21,8 +22,7 @@ class MealControllerClass:
 
     def add_the_meal(MealTempDate, MealTempTime, MealTempName, MealTempCal, MealTempFat,
                      MealTempSug, MealTempChol, MealTempSod, MealTempProt, MealNotes):
-        screen = MealInfo()  # Page where user can add a meal
-        screen.show()
+
 
         MealTempDate = MealDateLbl.text()   # These lines take the users input into the variable
         MealTempTime = MealTimeLbl.text()
@@ -34,3 +34,8 @@ class MealControllerClass:
         MealTempSod = MealSodLbl.text()
         MealTempProt = MealProtLbl.text()
         MealNotes = MealNotesLbl.text()
+
+        screen = MealWindow()  # returns to meals page
+        screen.show()
+
+        
