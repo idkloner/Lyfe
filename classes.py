@@ -7,12 +7,12 @@ class Entry:
 
 
 class Meal(Entry):
-    Calories = 0.0
-    Fat = 0.0
-    Sugar = 0.0
-    Cholesterol = 0.0
-    Sodium = 0.0
-    Protein = 0.0
+    Calories = ""
+    Fat = ""
+    Sugar = ""
+    Cholesterol = ""
+    Sodium = ""
+    Protein = ""
     Time = ""
     Notes = ""
 
@@ -39,17 +39,17 @@ class Meal(Entry):
         mealDate = Xml.SubElement(newMeal, "Date")
         mealDate.text = self.Date
         mealCalories = Xml.SubElement(newMeal, "Calories")
-        mealCalories.text = str(self.Calories)
+        mealCalories.text = self.Calories
         mealFat = Xml.SubElement(newMeal, "Fat")
-        mealFat.text = str(self.Fat)
+        mealFat.text = self.Fat
         mealSugar = Xml.SubElement(newMeal, "Sugar")
-        mealSugar.text = str(self.Sugar)
+        mealSugar.text = self.Sugar
         mealCholesterol = Xml.SubElement(newMeal, "Cholesterol")
-        mealCholesterol.text = str(self.Cholesterol)
+        mealCholesterol.text = self.Cholesterol
         mealSodium = Xml.SubElement(newMeal, "Sodium")
-        mealSodium.text = str(self.Sodium)
+        mealSodium.text = self.Sodium
         mealProtein = Xml.SubElement(newMeal, "Protein")
-        mealProtein.text = str(self.Protein)
+        mealProtein.text = self.Protein
         mealTime = Xml.SubElement(newMeal, "Time")
         mealTime.text = self.Time
         mealNotes = Xml.SubElement(newMeal, "Notes")
