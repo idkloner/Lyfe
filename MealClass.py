@@ -15,13 +15,11 @@ def LoadMeals():
                              meal.find("Sodium").text, meal.find("Protein").text, meal.find("Time").text,
                              meal.find("Notes").text))
 
-# Basic class for all entries (not necessary?)
-class Entry:
+  
+# Class for meal entries
+class Meal():
     Name = ""
     Date = ""
-
-# Class for meal entries
-class Meal(Entry):
     Calories = ""
     Fat = ""
     Sugar = ""
