@@ -5,9 +5,10 @@ from MealClass import *
 
 
 class MealControllerClass:
-    # Temporary variables to hold changing variables
-    CalConsumedCount = ""  # The total sum of the days calories, resets at midnight
-    CalLeft = ""  # Calories Left for the day
+    
+    CalConsumedCount = ""  	# The total sum of the days calories, resets at midnight
+    CalLeft = ""  		# Calories Left for the day
+    TargetCal = "2000"		#calorie goal for the day
 
     # When Add a meal is pressed
 
@@ -16,10 +17,15 @@ class MealControllerClass:
                        MealSugLbl.text(), MealCholLbl.text(), MealSodLbl.text(), MealProtLbl.text(), MealTimeLbl.text(),
                        MealNotesLbl.text())
 
-        new_meal.AddMealDatabase()  # temps to file.
+        new_meal.AddMealDatabase()           # adds meal to the data base#.
 
-        CalConsumedCount = CalConsumedCount + MealCalLbl.text    # Calculates the total calories consumed for the day
-        CalLeft = TargetCal - CalConsumedCount              # Calculates the amount of calories left for the day
+        new_list = Meal(MealNameLbl.text(), MealDateLbl.text(), MealCalLbl.text()):
+        new_list.AddMealList() 		   # adds meal to list for on page. 	
+	
+        CalConsumedCount = CalConsumedCount + MealCalLbl.text    	# Calculates the total calories consumed for the day
+        CalLeft = TargetCal - CalConsumedCount              	# Calculates the amount of calories left for the day
+
+
 
 
         screen = MealWindow()  # returns to meals page
