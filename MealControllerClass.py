@@ -1,7 +1,7 @@
 # Meal Controller Class
 # David Toepfer
 
-from classes import *
+from MealClass import *
 
 
 class MealControllerClass:
