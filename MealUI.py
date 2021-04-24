@@ -9,6 +9,7 @@
 
 #4/23/21:   changed object names to be in line with other files
 #           changed window name to "Meal Window"
+#           added function to call add_the_meal function when button is pressed
 #           -agthomas95
 
 from PyQt5 import QtCore, QtGui, QtWidgets
