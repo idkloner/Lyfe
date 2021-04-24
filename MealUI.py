@@ -94,9 +94,13 @@ class Ui_Form(object):
         self.PushFinishButton.setMouseTracking(False)
         self.PushFinishButton.setCheckable(False)
         self.PushFinishButton.setObjectName("PushFinishButton")
+        self.PushFinishButton.clicked.connect(self.button_click)
 
         self.retranslateUi(Form)
         QtCore.QMetaObject.connectSlotsByName(Form)
+
+    def button_click(self):
+        add_the_meal()
 
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
@@ -112,7 +116,7 @@ class Ui_Form(object):
         self.FormSodium.setText(_translate("Form", "<html><head/><body><p><span style=\" font-size:12pt;\">Sodium</span></p></body></html>"))
         self.FormProtein.setText(_translate("Form", "<html><head/><body><p><span style=\" font-size:12pt;\">Protein</span></p></body></html>"))
         self.FormNotes.setText(_translate("Form", "<html><head/><body><p><span style=\" font-size:12pt;\">Notes</span></p></body></html>"))
-        self.PushFinishButton.setText(_translate("Form", "Finish"))
+        self.PushFinishButton.setText(_translate("Form", "Add meal"))
 
 
 if __name__ == "__main__":
