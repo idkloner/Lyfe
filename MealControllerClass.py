@@ -2,7 +2,7 @@
 # David Toepfer
 
 from MealClass import *
-
+from MealUI import *
 
 class MealControllerClass:
     
@@ -12,10 +12,9 @@ class MealControllerClass:
 
     # When Add a meal is pressed
 
-    def add_the_meal(self, CalConsumedCount, CalLeft):
-        new_meal = Meal(MealNameLbl.text(), MealDateLbl.text(), MealCalLbl.text(), MealFatLbl.text(),
-                       MealSugLbl.text(), MealCholLbl.text(), MealSodLbl.text(), MealProtLbl.text(), MealTimeLbl.text(),
-                       MealNotesLbl.text())
+    @staticmethod 
+    def add_the_meal(Name, Date, Cal, Fat, Sug, Chol, Sod, Prot, Time, Notes):
+        new_meal = Meal(Name, Date, Cal, Fat, Sug, Chol, Sod, Prot, Time, Notes)
 
         new_meal.AddMealDatabase()           # adds meal to the data base#.
 

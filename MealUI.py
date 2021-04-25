@@ -15,7 +15,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 from MealControllerClass import *
 
-class Ui_Form(object):
+class Ui_MealWindow(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
         Form.resize(560, 720)
@@ -101,7 +101,18 @@ class Ui_Form(object):
         QtCore.QMetaObject.connectSlotsByName(Form)
 
     def button_click(self):
-        add_the_meal()
+        Name = self.MealTempName.text() 
+        Date = self.MealTempDate.text()
+        Cal = self.MealTempCal.text()
+        Fat = self.MealTempFat.text()
+        Sug = self.MealTempSug.text()
+        Chol = self.MealTempChol.text()
+        Sod = self.MealTempSod.text()
+        Prot = self.MealTempProt.text()
+        Time = self.MealTempTime.text()
+        Notes = self.MealNotes.toPlainText()
+
+        MealControllerClass.add_the_meal(Name, Date, Cal, Fat, Sug, Chol, Sod, Prot, Time, Notes)
 
     def retranslateUi(self, Form):
         _translate = QtCore.QCoreApplication.translate
@@ -124,7 +135,7 @@ if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
     Form = QtWidgets.QWidget()
-    ui = Ui_Form()
+    ui = Ui_MealWindow()
     ui.setupUi(Form)
     Form.show()
     sys.exit(app.exec_())
