@@ -1,6 +1,7 @@
 # Ben Witort
 
 import xml.etree.ElementTree as Xml
+import os
 
 # Used to hold all meals in database while user is in Meal window
 MealList = []
@@ -43,7 +44,14 @@ class Meal():
 
     # Puts the meal into the meal database
     def AddMealDatabase(self):
-        file = Xml.parse("databases/meals.xml")
+        try:
+            file = Xml.parse("databases/meals.xml")
+        except:
+            database = Xml.ElementTree(Xml.Element("Meals"))
+            os.makedirs("databases")
+            with open("databases/meals.xml", "wb") as NewDatabase:
+                database.write(NewDatabase)
+            file = Xml.parse("databases/meals.xml")
         meals = file.getroot()
         newMeal = Xml.Element("Meal")
         meals.append(newMeal)
