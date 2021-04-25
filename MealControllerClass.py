@@ -19,8 +19,7 @@ class MealControllerClass:
 
         new_meal.AddMealDatabase()           # adds meal to the data base#.
 
-        new_list = Meal(MealNameLbl.text(), MealDateLbl.text(), MealCalLbl.text()):
-        new_list.AddMealList() 		   # adds meal to list for on page. 	
+        new_meal.AddMealList() 		   # adds meal to list for on page. 	
 	
         CalConsumedCount = CalConsumedCount + MealCalLbl.text    	# Calculates the total calories consumed for the day
         CalLeft = TargetCal - CalConsumedCount              	# Calculates the amount of calories left for the day
