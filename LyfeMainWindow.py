@@ -99,9 +99,9 @@ class Ui_MainWindow(object):
         self.actionClose.setText(_translate("MainWindow", "Close"))
         self.actionClose.setShortcut(_translate("MainWindow", "Ctrl+F4"))
 
-    def meal_page_flip(self):
-        screen = MealWindow()
-        screen.show()
+    def meal_page_flip(self, checked):
+        self.screen = UI_MealWindow()		# Error UI_MealWindow is not defined
+        self.screen.show()
 
 
 if __name__ == "__main__":
