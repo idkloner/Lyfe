@@ -1,6 +1,8 @@
 # Ben Witort
 
+# Library that handles creating and interacting with XML files
 import xml.etree.ElementTree as Xml
+# Library needed for creating database directory
 import os
 
 # Used to hold all meals in database while user is in Meal window
@@ -18,19 +20,10 @@ def LoadMeals():
 
   
 # Class for meal entries
-class Meal():
-    Name = ""
-    Date = ""
-    Calories = ""
-    Fat = ""
-    Sugar = ""
-    Cholesterol = ""
-    Sodium = ""
-    Protein = ""
-    Time = ""
-    Notes = ""
-
-    def __init__(self, MealName, MealDate, MealCalories, MealFat, MealSugar, MealCholesterol, MealSodium, MealProtein, MealTime, MealNotes):
+class Meal:
+    # Initiates Meal object, assigning given data to their respective meal properties
+    def __init__(self, MealName, MealDate, MealCalories, MealFat, MealSugar,
+                 MealCholesterol, MealSodium, MealProtein, MealTime, MealNotes):
         self.Name = MealName
         self.Date = MealDate
         self.Calories = MealCalories
@@ -44,6 +37,7 @@ class Meal():
 
     # Puts the meal into the meal database
     def AddMealDatabase(self):
+        # If the meal database doesn't exist, create it
         try:
             file = Xml.parse("databases/meals.xml")
         except:
