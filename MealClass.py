@@ -18,7 +18,49 @@ def LoadMeals():
                              meal.find("Sodium").text, meal.find("Protein").text, meal.find("Time").text,
                              meal.find("Notes").text))
 
-  
+def FindInsertIndex(Date, Time, DatabaseRoot):
+    MonthSlashIndex = Date.find("/")
+    MealMonth = Date[0:MonthSlashIndex]
+    DaySlashIndex = Date.find("/", MonthSlashIndex + 1)
+    MealDay = Date[MonthSlashIndex + 1:DaySlashIndex]
+    MealYear = Date[DaySlashIndex + 1:]
+    MealTimeColonIndex = Time.find(":")
+    MealHour = Time[0:MealTimeColonIndex]
+    MealMinute = Time[MealTimeColonIndex + 1:]
+    DateInfo = {"Minute": MealMinute, "Hour": MealHour, "Day": MealDay, "Month": MealMonth, "Year": MealYear}
+
+    counter = 0
+    for meal in DatabaseRoot:
+        CurrentMealDate = meal[0].text
+        CurrentMealTime = meal[1].text
+        MonthIndex = CurrentMealDate.find("/")
+        CurrentMealMonth = CurrentMealDate[0:MonthIndex]
+        DayIndex = CurrentMealDate.find("/", MonthIndex + 1)
+        CurrentMealDay = CurrentMealDate[MonthIndex + 1:DayIndex]
+        CurrentMealYear = CurrentMealDate[DayIndex + 1:]
+        CurrentMealTimeColonIndex = CurrentMealTime.find(":")
+        CurrentMealHour = CurrentMealTime[0:CurrentMealTimeColonIndex]
+        CurrentMealMinute = CurrentMealTime[CurrentMealTimeColonIndex + 1:]
+
+        if(int(CurrentMealYear) > int(DateInfo["Year"])):
+            counter += 1
+            continue
+        if(int(CurrentMealMonth) > int(DateInfo["Month"])):
+            counter += 1
+            continue
+        if(int(CurrentMealDay) > int(DateInfo["Day"])):
+            counter += 1
+            continue
+        if(int(CurrentMealHour) > int(DateInfo["Hour"])):
+            counter += 1
+            continue
+        if(int(CurrentMealMinute) > int(DateInfo["Minute"])):
+            counter += 1
+            continue
+        break
+    return counter
+
+
 # Class for meal entries
 class Meal:
     # Initiates Meal object, assigning given data to their respective meal properties
@@ -48,11 +90,14 @@ class Meal:
             file = Xml.parse("databases/meals.xml")
         meals = file.getroot()
         newMeal = Xml.Element("Meal")
-        meals.append(newMeal)
-        mealName = Xml.SubElement(newMeal, "Name")
-        mealName.text = self.Name
+        index = FindInsertIndex(self.Date, self.Time, meals)
         mealDate = Xml.SubElement(newMeal, "Date")
         mealDate.text = self.Date
+        mealTime = Xml.SubElement(newMeal, "Time")
+        mealTime.text = self.Time
+        meals.insert(index, newMeal)
+        mealName = Xml.SubElement(newMeal, "Name")
+        mealName.text = self.Name
         mealCalories = Xml.SubElement(newMeal, "Calories")
         mealCalories.text = self.Calories
         mealFat = Xml.SubElement(newMeal, "Fat")
@@ -65,8 +110,6 @@ class Meal:
         mealSodium.text = self.Sodium
         mealProtein = Xml.SubElement(newMeal, "Protein")
         mealProtein.text = self.Protein
-        mealTime = Xml.SubElement(newMeal, "Time")
-        mealTime.text = self.Time
         mealNotes = Xml.SubElement(newMeal, "Notes")
         mealNotes.text = self.Notes
         file.write("databases/meals.xml")
