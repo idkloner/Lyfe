@@ -1,6 +1,5 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-from MealUI import *
-from EOFS.ui import *
+from MainMealWindow import Ui_MainMealWindow
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -20,15 +19,15 @@ class Ui_MainWindow(object):
         font.setPointSize(12)
         self.MealTrackerBtn.setFont(font)
         self.MealTrackerBtn.setObjectName("MealTrackerBtn")
-        self.EndOfDayBtn = QtWidgets.QPushButton(self.centralwidget)
+        #self.EndOfDayBtn = QtWidgets.QPushButton(self.centralwidget)
         self.MealTrackerBtn.clicked.connect(self.meal_page_flip)
-        self.EndOfDayBtn.setGeometry(QtCore.QRect(170, 300, 131, 51))
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        self.EndOfDayBtn.setFont(font)
-        self.EndOfDayBtn.setObjectName("EndOfDayBtn")
+        #self.EndOfDayBtn.setGeometry(QtCore.QRect(170, 300, 131, 51))
+        #font = QtGui.QFont()
+        #font.setPointSize(12)
+        #self.EndOfDayBtn.setFont(font)
+        #self.EndOfDayBtn.setObjectName("EndOfDayBtn")
         #self.TaskTrackerBtn = QtWidgets.QPushButton(self.centralwidget)
-        #self.EndOfDayBtn.clicked.connect(self.eofs_page_flip)
+        #self.EndOfDayBtn.clicked.connect(self.eod_page_flip)
         #self.TaskTrackerBtn.setGeometry(QtCore.QRect(170, 230, 131, 51))
         #font = QtGui.QFont()
         #font.setPointSize(12)
@@ -100,21 +99,12 @@ class Ui_MainWindow(object):
         self.actionClose.setText(_translate("MainWindow", "Close"))
         self.actionClose.setShortcut(_translate("MainWindow", "Ctrl+F4"))
 
-    def meal_page_flip(self):
-        self.MealWindow = QtWidgets.QWidget()
-        self.MealUi = Ui_MealWindow()
-        self.MealUi.setupUi(self.MealWindow)
-        self.MealWindow.show()
+    def meal_page_flip(self): #made change to open main meal window instead. -agthomas95
+        self.mainMealWindow = QtWidgets.QMainWindow()
+        self.MealUi = Ui_MainMealWindow()
+        self.MealUi.setupUi(self.mainMealWindow)
+        self.mainMealWindow.show()
         MainWindow.close()
-
-    def eofs_page_flip(self):
-        self.EofsWindow = QtWidgets.QWidget()
-        self.EOFSUi = Ui_EofsWindow()
-        self.EOFSUi.setupUi(self.MealWindow)
-        self.EofsWindow.show()
-        MainWindow.close()
-
-
 
 
 if __name__ == "__main__":
