@@ -1,5 +1,5 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
-from MealUI import *
+from MainMealWindow import Ui_MainMealWindow
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -99,11 +99,11 @@ class Ui_MainWindow(object):
         self.actionClose.setText(_translate("MainWindow", "Close"))
         self.actionClose.setShortcut(_translate("MainWindow", "Ctrl+F4"))
 
-    def meal_page_flip(self):
-        self.MealWindow = QtWidgets.QWidget()
-        self.MealUi = Ui_MealWindow()
-        self.MealUi.setupUi(self.MealWindow)
-        self.MealWindow.show()
+    def meal_page_flip(self): #made change to open main meal window instead. -agthomas95
+        self.mainMealWindow = QtWidgets.QMainWindow()
+        self.MealUi = Ui_MainMealWindow()
+        self.MealUi.setupUi(self.mainMealWindow)
+        self.mainMealWindow.show()
         MainWindow.close()
 
 
