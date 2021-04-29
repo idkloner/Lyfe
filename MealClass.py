@@ -12,6 +12,10 @@ MealList = []
 def LoadMeals():
     file = Xml.parse("databases/meals.xml")
     meals = file.getroot()
+
+    if(MealList):
+        MealList.clear()
+
     for meal in meals:
         MealList.append(Meal(meal.find("Name").text, meal.find("Date").text, meal.find("Calories").text,
                              meal.find("Fat").text, meal.find("Sugar").text, meal.find("Cholesterol").text,
