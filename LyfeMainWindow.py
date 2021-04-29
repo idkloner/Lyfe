@@ -1,5 +1,7 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
+
 from MainMealWindow import Ui_MainMealWindow
+from EOFS.py import *
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
@@ -19,15 +21,15 @@ class Ui_MainWindow(object):
         font.setPointSize(12)
         self.MealTrackerBtn.setFont(font)
         self.MealTrackerBtn.setObjectName("MealTrackerBtn")
-        #self.EndOfDayBtn = QtWidgets.QPushButton(self.centralwidget)
+        self.EndOfDayBtn = QtWidgets.QPushButton(self.centralwidget)
         self.MealTrackerBtn.clicked.connect(self.meal_page_flip)
-        #self.EndOfDayBtn.setGeometry(QtCore.QRect(170, 300, 131, 51))
-        #font = QtGui.QFont()
-        #font.setPointSize(12)
-        #self.EndOfDayBtn.setFont(font)
-        #self.EndOfDayBtn.setObjectName("EndOfDayBtn")
+        self.EndOfDayBtn.setGeometry(QtCore.QRect(170, 300, 131, 51))
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.EndOfDayBtn.setFont(font)
+        self.EndOfDayBtn.setObjectName("EndOfDayBtn")
         #self.TaskTrackerBtn = QtWidgets.QPushButton(self.centralwidget)
-        #self.EndOfDayBtn.clicked.connect(self.eod_page_flip)
+        self.EndOfDayBtn.clicked.connect(self.eofs_page_flip)
         #self.TaskTrackerBtn.setGeometry(QtCore.QRect(170, 230, 131, 51))
         #font = QtGui.QFont()
         #font.setPointSize(12)
@@ -105,6 +107,15 @@ class Ui_MainWindow(object):
         self.MealUi.setupUi(self.mainMealWindow)
         self.mainMealWindow.show()
         MainWindow.close()
+
+    def eofs_page_flip(self): #added by David
+        self.EofsMealWindow = QtWidgets.QEofsWindow()
+        self.EOFSUi = Ui_EofsWindow()
+        self.EofsUi.setupUi(self.mainEofsWindow)
+        self.EofsWindow.show()
+        MainWindow.close()
+
+
 
 
 if __name__ == "__main__":
