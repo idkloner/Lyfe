@@ -23,24 +23,24 @@ def LoadMeals():
                              meal.find("Notes").text))
 
 def FindInsertIndex(Date, Time, DatabaseRoot):
-    MonthSlashIndex = Date.find("/")
-    MealMonth = Date[0:MonthSlashIndex]
-    DaySlashIndex = Date.find("/", MonthSlashIndex + 1)
-    MealDay = Date[MonthSlashIndex + 1:DaySlashIndex]
-    MealYear = Date[DaySlashIndex + 1:]
+    MealMonth = Date[4:7]
+    DaySpaceIndex = Date.find(" ", 8)
+    MealDay = Date[8:DaySpaceIndex]
+    MealYear = Date[DaySpaceIndex + 1:]
     MealTimeColonIndex = Time.find(":")
     MealHour = Time[0:MealTimeColonIndex]
     MealMinute = Time[MealTimeColonIndex + 1:]
     DateInfo = {"Minute": MealMinute, "Hour": MealHour, "Day": MealDay, "Month": MealMonth, "Year": MealYear}
 
     counter = 0
+    MonthDict = {"Jan": 1, "Feb": 2, "Mar": 3, "Apr": 4, "May": 5, "Jun": 6,
+                 "Jul": 7, "Aug": 8, "Sep": 9, "Oct": 10, "Nov": 11, "Dec": 12}
     for meal in DatabaseRoot:
         CurrentMealDate = meal[0].text
         CurrentMealTime = meal[1].text
-        MonthIndex = CurrentMealDate.find("/")
-        CurrentMealMonth = CurrentMealDate[0:MonthIndex]
-        DayIndex = CurrentMealDate.find("/", MonthIndex + 1)
-        CurrentMealDay = CurrentMealDate[MonthIndex + 1:DayIndex]
+        CurrentMealMonth = CurrentMealDate[4:7]
+        DayIndex = CurrentMealDate.find(" ", 8)
+        CurrentMealDay = CurrentMealDate[8:DayIndex]
         CurrentMealYear = CurrentMealDate[DayIndex + 1:]
         CurrentMealTimeColonIndex = CurrentMealTime.find(":")
         CurrentMealHour = CurrentMealTime[0:CurrentMealTimeColonIndex]
@@ -49,18 +49,19 @@ def FindInsertIndex(Date, Time, DatabaseRoot):
         if(int(CurrentMealYear) > int(DateInfo["Year"])):
             counter += 1
             continue
-        if(int(CurrentMealMonth) > int(DateInfo["Month"])):
+        if(MonthDict[CurrentMealMonth] > MonthDict[DateInfo["Month"]]):
             counter += 1
             continue
         if(int(CurrentMealDay) > int(DateInfo["Day"])):
             counter += 1
             continue
-        if(int(CurrentMealHour) > int(DateInfo["Hour"])):
-            counter += 1
-            continue
-        if(int(CurrentMealMinute) > int(DateInfo["Minute"])):
-            counter += 1
-            continue
+        if(int(CurrentMealDay) == int(DateInfo["Day"])):
+            if(int(CurrentMealHour) > int(DateInfo["Hour"])):
+                counter += 1
+                continue
+            if(int(CurrentMealMinute) > int(DateInfo["Minute"])):
+                counter += 1
+                continue
         break
     return counter
 
