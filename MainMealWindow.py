@@ -9,12 +9,15 @@
 
 
 from PyQt5 import QtCore, QtGui, QtWidgets
-from PyQt5.QtGui import QPen, QFont
+from PyQt5.QtGui import QPen
 from PyQt5.QtWidgets import QVBoxLayout
 from PyQt5.QtChart import QChart, QChartView, QPieSeries
 from PyQt5.QtCore import Qt
 from datetime import date
 from MealControllerClass import MealControllerClass
+from MealUI import Ui_MealWindow
+from MealClass import *
+import sys
 
 
 class Ui_MainMealWindow(object):
@@ -87,6 +90,7 @@ class Ui_MainMealWindow(object):
         self.pushButton.setGeometry(QtCore.QRect(640, 10, 141, 51))
         self.pushButton.setAutoFillBackground(False)
         self.pushButton.setObjectName("pushButton")
+        self.pushButton.clicked.connect(self.toAddMeal)
         self.pushButton_2 = QtWidgets.QPushButton(self.centralwidget)
         self.pushButton_2.setGeometry(QtCore.QRect(90, 510, 131, 51))
         self.pushButton_2.setObjectName("pushButton_2")
@@ -112,7 +116,7 @@ class Ui_MainMealWindow(object):
 
         self.calorieSeries = QPieSeries()
         self.calorieSeries.append("Calories consumed", MealControllerClass.CalConsumedCount)
-        self.calorieSeries.append("Calories Left", MealControllerClass.CalLeft)
+        self.calorieSeries.append("Calories left", MealControllerClass.CalLeft)
 
         self.calorieSlice = self.calorieSeries.slices()[0]
         self.calorieSlice.setPen(QPen(Qt.darkGray, 1))
@@ -123,9 +127,7 @@ class Ui_MainMealWindow(object):
 
         self.calorieChart = QChart()
         self.calorieChart.addSeries(self.calorieSeries)
-        font = QtGui.QFont()
-        font.setPointSize(12)
-        self.calorieChart.legend().setFont(font)
+        self.calorieChart.legend().hide()
         self.calorieChart.setBackgroundVisible(False)
 
         self.chartView = QChartView(self.calorieChart)
@@ -133,9 +135,30 @@ class Ui_MainMealWindow(object):
         self.vbox.addWidget(self.chartView)
         self.pieChartWidget.setLayout(self.vbox)
 
+        self.caloriesText = QtWidgets.QLabel(self.centralwidget)
+        self.caloriesText.setGeometry(360, 150, 400, 40)
+        font = QtGui.QFont()
+        font.setPointSize(12)
+        self.caloriesText.setFont(font)
+        self.caloriesText.setObjectName("caloriesConsumedText")
+
+        self.dailyGoalText = QtWidgets.QLabel(self.centralwidget)
+        self.dailyGoalText.setGeometry(630, 240, 150, 40)
+        self.dailyGoalText.setFont(font)
+        self.dailyGoalText.setObjectName("dailyGoalText")
+
         self.retranslateUi(MainMealWindow)
         QtCore.QMetaObject.connectSlotsByName(MainMealWindow)
 
+    #def addMealsToList(self):
+        #LoadMeals()
+        #for meal in MealList:
+
+    def toAddMeal(self):
+        self.addMealWindow = QtWidgets.QWidget()
+        self.mealUi = Ui_MealWindow()
+        self.mealUi.MealWindowSetup(self.addMealWindow)
+        self.addMealWindow.show()
 
     def retranslateUi(self, MainMealWindow):
         _translate = QtCore.QCoreApplication.translate
@@ -163,10 +186,12 @@ class Ui_MainMealWindow(object):
         self.pushButton_2.setText(_translate("MainMealWindow", "Back"))
         currentDate = date.today()
         self.CurrentDateDisplay.setText(_translate("MainMealWindow", currentDate.strftime("%A, %B %d")))
+        self.caloriesText.setText(_translate("MainMealWindow", "Calories consumed: " + str(MealControllerClass.CalConsumedCount) +
+                                             " calories\nCalories left: " + str(MealControllerClass.CalLeft) + " calories"))
+        self.dailyGoalText.setText(_translate("MainMealWindow", "Daily goal:\n" + str(MealControllerClass.TargetCal) + " calories"))
 
 
 if __name__ == "__main__":
-    import sys
     app = QtWidgets.QApplication(sys.argv)
     MainMealWindow = QtWidgets.QMainWindow()
     ui = Ui_MainMealWindow()
