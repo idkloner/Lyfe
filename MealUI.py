@@ -11,6 +11,7 @@
 #           changed window name to "Meal Window"
 #           added function to call add_the_meal function when button is pressed
 #           -agthomas95
+import datetime
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from PyQt5.QtWidgets import QCalendarWidget
@@ -28,13 +29,14 @@ class Ui_MealWindow(object):
         self.FormTitle.setMouseTracking(True)
         self.FormTitle.setLineWidth(1)
         self.FormTitle.setObjectName("FormTitle")
-        self.MealTempDate = QtWidgets.QPushButton(MealForm)
+        self.MealTempDate = QtWidgets.QLineEdit(MealForm)
         self.MealTempDate.setGeometry(QtCore.QRect(180, 120, 261, 20))
         self.MealTempDate.setObjectName("MealDateLbl")
-        self.MealTempDate.clicked.connect(self.showCalendar)
+        self.MealTempDate.setPlaceholderText("MM/DD/YYYY")
         self.MealTempTime = QtWidgets.QLineEdit(MealForm)
         self.MealTempTime.setGeometry(QtCore.QRect(180, 160, 261, 20))
         self.MealTempTime.setObjectName("MealTimeLbl")
+        self.MealTempTime.setPlaceholderText("HH:MM AM/PM")
         self.MealTempName = QtWidgets.QLineEdit(MealForm)
         self.MealTempName.setGeometry(QtCore.QRect(180, 200, 261, 20))
         self.MealTempName.setObjectName("MealNameLbl")
@@ -59,13 +61,22 @@ class Ui_MealWindow(object):
         self.MealNotes = QtWidgets.QTextEdit(MealForm)
         self.MealNotes.setGeometry(QtCore.QRect(180, 480, 261, 71))
         self.MealNotes.setObjectName("MealNotesLbl")
+        # ignore form___, it's the text on the ui to the left of the text boxes
         self.FormDate = QtWidgets.QLabel(MealForm)
         self.FormDate.setGeometry(QtCore.QRect(90, 120, 51, 16))
-        #ignore form___, it's the text on the ui to the left of the text boxes
         self.FormDate.setObjectName("FormDate")
+        self.MealDateWrong = QtWidgets.QLabel(MealForm)
+        self.MealDateWrong.setGeometry(QtCore.QRect(180, 140, 261, 20))
+        self.MealDateWrong.setVisible(False)
+        self.MealDateWrong.setObjectName("MealDateWrong")
         self.FormTime = QtWidgets.QLabel(MealForm)
         self.FormTime.setGeometry(QtCore.QRect(90, 160, 51, 16))
         self.FormTime.setObjectName("FormTime")
+        self.MealTimeWrong = QtWidgets.QLabel(MealForm)
+        self.MealTimeWrong.setGeometry(QtCore.QRect(180, 180, 261, 20))
+        self.MealTimeWrong.setObjectName("FormTime")
+        self.MealTimeWrong.setVisible(False)
+        self.MealDateWrong.setObjectName("MealDateWrong")
         self.FormName = QtWidgets.QLabel(MealForm)
         self.FormName.setGeometry(QtCore.QRect(90, 200, 51, 16))
         self.FormName.setObjectName("FormName")
@@ -115,30 +126,38 @@ class Ui_MealWindow(object):
         Time = self.MealTempTime.text()
         Notes = self.MealNotes.toPlainText()
 
-        MealControllerClass.add_the_meal(Name, Date, Cal, Fat, Sug, Chol, Sod, Prot, Time, Notes)
-        MealForm.close()
+        if self.checkInputs(Date, Time):
+            MealControllerClass.add_the_meal(Name, Date, Cal, Fat, Sug, Chol, Sod, Prot, Time, Notes)
+            MealForm.close()
 
-    def showCalendar(self):
-        self.calendar = QCalendarWidget()
-        self.calendar.setGeometry(QtGui.QCursor.pos().x(), QtGui.QCursor.pos().y(), 300, 200)
-        self.calendar.setMinimumDate(QtCore.QDate(2000, 1, 1))
-        self.calendar.setMaximumDate(QtCore.QDate(3000, 1, 1))
-        self.calendar.setGridVisible(True)
-        self.calendar.clicked.connect(self.getDate)
-        self.calendar.show()
+    def checkInputs(self, date, time):
+        formatCounter = 0
+        try:
+            datetime.datetime.strptime(date, "%m/%d/%Y")
+            self.MealDateWrong.setVisible(False)
+            formatCounter += 1
+        except:
+            self.MealDateWrong.setVisible(True)
 
-    def getDate(self, *args):
-        date = self.calendar.selectedDate().toString()
-        _translate = QtCore.QCoreApplication.translate
-        self.MealTempDate.setText(_translate("MealForm", date))
-        self.calendar.close()
+        try:
+            datetime.datetime.strptime(time, "%H:%M %p")
+            self.MealTimeWrong.setVisible(False)
+            formatCounter += 1
+        except:
+            self.MealTimeWrong.setVisible(True)
+
+        if formatCounter == 2:
+            return True
+        return False
 
     def retranslateUi(self, MealForm):
         _translate = QtCore.QCoreApplication.translate
         MealForm.setWindowTitle(_translate("MealForm", "Meal Window"))
         self.FormTitle.setText(_translate("MealForm", "<html><head/><body><p align=\"center\"><span style=\" font-size:36pt;\">New meal</span></p></body></html>"))
         self.FormDate.setText(_translate("MealForm", "<html><head/><body><p><span style=\" font-size:12pt;\">Date</span></p></body></html>"))
+        self.MealDateWrong.setText(_translate("MealForm", "<html><head/><body><p style=\"color:red\"><span style=\" font-size:10pt;\">Wrong date format</span></p></body></html>"))
         self.FormTime.setText(_translate("MealForm", "<html><head/><body><p><span style=\" font-size:12pt;\">Time</span></p></body></html>"))
+        self.MealTimeWrong.setText(_translate("MealForm","<html><head/><body><p style=\"color:red\"><span style=\" font-size:10pt;\">Wrong time format</span></p></body></html>"))
         self.FormName.setText(_translate("MealForm", "<html><head/><body><p><span style=\" font-size:12pt;\">Name</span></p></body></html>"))
         self.FormCalories.setText(_translate("MealForm", "<html><head/><body><p><span style=\" font-size:12pt;\">Calories</span></p></body></html>"))
         self.FormFats.setText(_translate("MealForm", "<html><head/><body><p><span style=\" font-size:12pt;\">Fats</span></p></body></html>"))
@@ -147,7 +166,6 @@ class Ui_MealWindow(object):
         self.FormSodium.setText(_translate("MealForm", "<html><head/><body><p><span style=\" font-size:12pt;\">Sodium</span></p></body></html>"))
         self.FormProtein.setText(_translate("MealForm", "<html><head/><body><p><span style=\" font-size:12pt;\">Protein</span></p></body></html>"))
         self.FormNotes.setText(_translate("MealForm", "<html><head/><body><p><span style=\" font-size:12pt;\">Notes</span></p></body></html>"))
-        self.MealTempDate.setText(_translate("MealForm", "Click for calendar"))
         self.PushFinishButton.setText(_translate("MealForm", "Add meal"))
 
 
