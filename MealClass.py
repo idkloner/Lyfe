@@ -23,45 +23,45 @@ def LoadMeals():
                              meal.find("Notes").text))
 
 def FindInsertIndex(Date, Time, DatabaseRoot):
-    MealMonth = Date[4:7]
-    DaySpaceIndex = Date.find(" ", 8)
-    MealDay = Date[8:DaySpaceIndex]
-    MealYear = Date[DaySpaceIndex + 1:]
-    MealTimeColonIndex = Time.find(":")
-    MealHour = Time[0:MealTimeColonIndex]
-    MealMinute = Time[MealTimeColonIndex + 1:]
-    DateInfo = {"Minute": MealMinute, "Hour": MealHour, "Day": MealDay, "Month": MealMonth, "Year": MealYear}
+    MealMonth = Date[0:2]
+    MealDay = Date[3:5]
+    MealYear = Date[6:]
+    MealHour = Time[0:2]
+    MealMinute = Time[3:5]
+    MealTimeFrame = Time[6:]
+    DateInfo = {"Timeframe": MealTimeFrame, "Minute": MealMinute, "Hour": MealHour, "Day": MealDay, "Month": MealMonth, "Year": MealYear}
 
     counter = 0
-    MonthDict = {"Jan": 1, "Feb": 2, "Mar": 3, "Apr": 4, "May": 5, "Jun": 6,
-                 "Jul": 7, "Aug": 8, "Sep": 9, "Oct": 10, "Nov": 11, "Dec": 12}
     for meal in DatabaseRoot:
         CurrentMealDate = meal[0].text
         CurrentMealTime = meal[1].text
-        CurrentMealMonth = CurrentMealDate[4:7]
-        DayIndex = CurrentMealDate.find(" ", 8)
-        CurrentMealDay = CurrentMealDate[8:DayIndex]
-        CurrentMealYear = CurrentMealDate[DayIndex + 1:]
-        CurrentMealTimeColonIndex = CurrentMealTime.find(":")
-        CurrentMealHour = CurrentMealTime[0:CurrentMealTimeColonIndex]
-        CurrentMealMinute = CurrentMealTime[CurrentMealTimeColonIndex + 1:]
+        CurrentMealMonth = CurrentMealDate[0:2]
+        CurrentMealDay = CurrentMealDate[3:5]
+        CurrentMealYear = CurrentMealDate[6:]
+        CurrentMealHour = CurrentMealTime[0:2]
+        CurrentMealMinute = CurrentMealTime[3:5]
+        CurrentMealTimeFrame = CurrentMealTime[6:]
 
         if(int(CurrentMealYear) > int(DateInfo["Year"])):
             counter += 1
             continue
-        if(MonthDict[CurrentMealMonth] > MonthDict[DateInfo["Month"]]):
+        if(int(CurrentMealMonth) > int(DateInfo["Month"])):
             counter += 1
             continue
         if(int(CurrentMealDay) > int(DateInfo["Day"])):
             counter += 1
             continue
         if(int(CurrentMealDay) == int(DateInfo["Day"])):
-            if(int(CurrentMealHour) > int(DateInfo["Hour"])):
+            if(CurrentMealTimeFrame.upper() == "PM" and DateInfo["Timeframe"].upper() == "AM"):
                 counter += 1
                 continue
-            if(int(CurrentMealMinute) > int(DateInfo["Minute"])):
-                counter += 1
-                continue
+            if(CurrentMealTimeFrame.upper() == DateInfo["Timeframe"].upper()):
+                if(int(CurrentMealHour) > int(DateInfo["Hour"])):
+                    counter += 1
+                    continue
+                if(int(CurrentMealMinute) > int(DateInfo["Minute"])):
+                    counter += 1
+                    continue
         break
     return counter
 
@@ -89,7 +89,8 @@ class Meal:
             file = Xml.parse("databases/meals.xml")
         except:
             database = Xml.ElementTree(Xml.Element("Meals"))
-            os.makedirs("databases")
+            if(not os.path.isdir("databases")):
+                os.makedirs("databases")
             with open("databases/meals.xml", "wb") as NewDatabase:
                 database.write(NewDatabase)
             file = Xml.parse("databases/meals.xml")
