@@ -21,7 +21,7 @@ import sys
 
 
 class Ui_MainMealWindow(object):
-    def setupUi(self, MainMealWindow):
+    def MealWindowUI(self, MainMealWindow):
         MainMealWindow.setObjectName("MainMealWindow")
         MainMealWindow.resize(800, 675)
         font = QtGui.QFont()
@@ -86,14 +86,14 @@ class Ui_MainMealWindow(object):
         font.setPointSize(14)
         item.setFont(font)
         self.listWidget.addItem(item)
-        self.pushButton = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton.setGeometry(QtCore.QRect(640, 10, 141, 51))
-        self.pushButton.setAutoFillBackground(False)
-        self.pushButton.setObjectName("pushButton")
-        self.pushButton.clicked.connect(self.toAddMeal)
-        self.pushButton_2 = QtWidgets.QPushButton(self.centralwidget)
-        self.pushButton_2.setGeometry(QtCore.QRect(90, 510, 131, 51))
-        self.pushButton_2.setObjectName("pushButton_2")
+        self.addMealButton = QtWidgets.QPushButton(self.centralwidget)
+        self.addMealButton.setGeometry(QtCore.QRect(640, 10, 141, 51))
+        self.addMealButton.setAutoFillBackground(False)
+        self.addMealButton.setObjectName("addMealButton")
+        self.addMealButton.clicked.connect(self.toAddMeal)
+        self.MainMenuButton = QtWidgets.QPushButton(self.centralwidget)
+        self.MainMenuButton.setGeometry(QtCore.QRect(90, 510, 131, 51))
+        self.MainMenuButton.setObjectName("MainMenuButton")
         self.CurrentDateDisplay = QtWidgets.QLabel(self.centralwidget)
         self.CurrentDateDisplay.setGeometry(QtCore.QRect(20, 10, 271, 61))
         font = QtGui.QFont()
@@ -182,8 +182,8 @@ class Ui_MainMealWindow(object):
         item = self.listWidget.item(7)
         item.setText(_translate("MainMealWindow", "Meal"))
         self.listWidget.setSortingEnabled(__sortingEnabled)
-        self.pushButton.setText(_translate("MainMealWindow", "Add a meal"))
-        self.pushButton_2.setText(_translate("MainMealWindow", "Back"))
+        self.addMealButton.setText(_translate("MainMealWindow", "Add a meal"))
+        self.MainMenuButton.setText(_translate("MainMealWindow", "Back"))
         currentDate = date.today()
         self.CurrentDateDisplay.setText(_translate("MainMealWindow", currentDate.strftime("%A, %B %d")))
         self.caloriesText.setText(_translate("MainMealWindow", "Calories consumed: " + str(MealControllerClass.CalConsumedCount) +
@@ -195,6 +195,6 @@ if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
     MainMealWindow = QtWidgets.QMainWindow()
     ui = Ui_MainMealWindow()
-    ui.setupUi(MainMealWindow)
+    ui.MealWindowUI(MainMealWindow)
     MainMealWindow.show()
     sys.exit(app.exec_())
