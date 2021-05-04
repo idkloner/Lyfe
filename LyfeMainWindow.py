@@ -104,7 +104,7 @@ class Ui_MainWindow(object):
     def meal_page_flip(self): #made change to open main meal window instead. -agthomas95
         self.mainMealWindow = QtWidgets.QMainWindow()
         self.MealUi = Ui_MainMealWindow()
-        self.MealUi.setupUi(self.mainMealWindow)
+        self.MealUi.MealWindowUI(self.mainMealWindow)
         self.mainMealWindow.show()
         MainWindow.close()
 
