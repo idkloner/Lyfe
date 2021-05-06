@@ -54,16 +54,12 @@ def FindInsertIndex(Date, Time, DatabaseRoot):  #changed values to use split to 
             counter += 1
             continue
         if(int(CurrentMealDay) == int(DateInfo["Day"])):
-            if(CurrentMealTimeFrame.upper() == "PM" and DateInfo["Timeframe"].upper() == "AM"):
+            if(int(CurrentMealHour) > int(DateInfo["Hour"])):
                 counter += 1
                 continue
-            if(CurrentMealTimeFrame.upper() == DateInfo["Timeframe"].upper()):
-                if(int(CurrentMealHour) > int(DateInfo["Hour"])):
-                    counter += 1
-                    continue
-                if(int(CurrentMealMinute) > int(DateInfo["Minute"])):
-                    counter += 1
-                    continue
+            if(int(CurrentMealMinute) > int(DateInfo["Minute"])):
+                counter += 1
+                continue
         break
     return counter
 
