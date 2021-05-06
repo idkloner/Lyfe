@@ -21,7 +21,7 @@ class Ui_MainWindow(object):
         self.MealTrackerBtn.setFont(font)
         self.MealTrackerBtn.setObjectName("MealTrackerBtn")
         self.EndOfDayBtn = QtWidgets.QPushButton(self.centralwidget)
-        self.MealTrackerBtn.clicked.connect(self.meal_page_flip)
+        self.MealTrackerBtn.clicked.connect(self.meal_page_flip)		#added by David to create page flip
         self.EndOfDayBtn.setGeometry(QtCore.QRect(170, 300, 131, 51))
         font = QtGui.QFont()
         font.setPointSize(12)
