@@ -1,6 +1,5 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-from MainMealWindow import Ui_MainMealWindow
 from EOFS.py import *
 
 class Ui_MainWindow(object):
@@ -101,7 +100,8 @@ class Ui_MainWindow(object):
         self.actionClose.setText(_translate("MainWindow", "Close"))
         self.actionClose.setShortcut(_translate("MainWindow", "Ctrl+F4"))
 
-    def meal_page_flip(self): #made change to open main meal window instead. -agthomas95
+    def meal_page_flip(self, MainWindow): #made change to open main meal window instead. -agthomas95
+        from MainMealWindow import Ui_MainMealWindow
         self.mainMealWindow = QtWidgets.QMainWindow()
         self.MealUi = Ui_MainMealWindow()
         self.MealUi.MealWindowUI(self.mainMealWindow)
