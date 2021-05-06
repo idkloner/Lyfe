@@ -22,25 +22,27 @@ def LoadMeals():
                              meal.find("Sodium").text, meal.find("Protein").text, meal.find("Time").text,
                              meal.find("Notes").text))
 
-def FindInsertIndex(Date, Time, DatabaseRoot):
-    MealMonth = Date[0:2]
-    MealDay = Date[3:5]
-    MealYear = Date[6:]
-    MealHour = Time[0:2]
-    MealMinute = Time[3:5]
-    MealTimeFrame = Time[6:]
+def FindInsertIndex(Date, Time, DatabaseRoot):  #changed values to use split to get the numbers between each symbol.
+    MealMonth = Date.split("/")[0]              #Before, MealMonth would get a number + / and cause a base 10 error when
+    MealDay = Date.split("/")[1]                #comparing the two days together.
+    MealYear = Date.split("/")[2]
+    MealHour = Time.split(":")[0]
+    MealMinute = Time[Time.find(":")+1 : Time.find(" ")]
+    MealTimeFrame = Time.split(" ")[1]
+    if MealTimeFrame == "PM": MealHour = str(int(MealHour) + 12)
     DateInfo = {"Timeframe": MealTimeFrame, "Minute": MealMinute, "Hour": MealHour, "Day": MealDay, "Month": MealMonth, "Year": MealYear}
 
     counter = 0
     for meal in DatabaseRoot:
         CurrentMealDate = meal[0].text
         CurrentMealTime = meal[1].text
-        CurrentMealMonth = CurrentMealDate[0:2]
-        CurrentMealDay = CurrentMealDate[3:5]
-        CurrentMealYear = CurrentMealDate[6:]
-        CurrentMealHour = CurrentMealTime[0:2]
-        CurrentMealMinute = CurrentMealTime[3:5]
-        CurrentMealTimeFrame = CurrentMealTime[6:]
+        CurrentMealMonth = CurrentMealDate.split("/")[0]
+        CurrentMealDay = CurrentMealDate.split("/")[1]
+        CurrentMealYear = CurrentMealDate.split("/")[2]
+        CurrentMealHour = CurrentMealTime.split(":")[0]
+        CurrentMealMinute = CurrentMealTime[CurrentMealTime.find(":")+1 : CurrentMealTime.find(" ")]
+        CurrentMealTimeFrame = CurrentMealTime.split(" ")[1]
+        if CurrentMealTimeFrame == "PM": CurrentMealHour = str(int(MealHour) + 12)  #Used for comparing time by converting to 24-hour time
 
         if(int(CurrentMealYear) > int(DateInfo["Year"])):
             counter += 1
