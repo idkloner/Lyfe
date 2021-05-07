@@ -2,7 +2,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 
 from EOFS.py import *
 
-class Ui_MainWindow(object):
+class Ui_MainWindow(object):            #base layout/format: Carlos
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(480, 640)
