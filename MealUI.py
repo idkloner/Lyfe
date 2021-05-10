@@ -2,22 +2,21 @@
 
 # The UI for the user to add a meal into their database containing when the meal was consumed and nutritional info.
 
-# 4/23/21:  changed object names to be in line with other files
-#           changed window name to "Meal Window"
-#           added function to call add_the_meal function when button is pressed
-#           -agthomas95
+# all changed made by agthomas95 unless specified:
+# 4/23/21:  Changed object names to be in line with other files
+#           Changed window name to "Meal Window"
+#           Added function to call add_the_meal function when button is pressed
+#           Updated button to call the add_the_meal function
 
-# 5/2/21:   Added function for "add a meal" button to pop up a new window
-#           -agthomas95
+# 4/30/21:  Changed date entry to use the calendar to enter a consistent date rather than inconsistent date entries
 
-# 5/5/21:   Replaced the placeholder list text with function AddMealsToList() that will take all meal information from
-#           the database and show the meal's name, calories, and time under its corresponding date. Function will also
-#           add the calories of each meal from today's date to be displayed in the pie chart.
-#           Updated the pie chart to show the updated calories consumed and how much left before exceeding the user's
-#           daily target calories, followed by the previous information.
-#           Back button now switches to the Lyfe main menu UI.
-#           Moved the Lyfe main window import to the function that'll switch to the Lyfe main menu UI to avoid an ImportError.
-#           -agthomas95
+# 5/3/21:   Updated date and time entry to be required to enter a consistent date and time before being added to database
+
+# 5/5/21:   Added text under the required fields (time and date if entered incorrectly, name and calories if empty)
+#           that's only shown when conditions are met. Changes field border to red to indicate wrong fields.
+#           Added a function that checks that the inputs are correct before adding the information into the database.
+#           Added a function to make a new window back to the main meal UI to be called in multiple areas.
+#           Added a back button to go back to the main meal UI if the user doesn't want to enter a meal.
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from MealControllerClass import *
@@ -212,6 +211,7 @@ class Ui_MealWindow(object):
         self.toMainMealWindow.show()
         MealForm.close()
 
+    # displays the text to the left of the respective input boxes and error messages when an input is done wrong
     def retranslateUi(self, MealForm):
         _translate = QtCore.QCoreApplication.translate
         MealForm.setWindowTitle(_translate("MealForm", "Meal Window"))
