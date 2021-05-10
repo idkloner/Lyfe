@@ -102,6 +102,7 @@ class Ui_MainWindow(object):            #base layout/format: Carlos
 
     def meal_page_flip(self, MainWindow): #made change to open main meal window instead. -agthomas95
         from MainMealWindow import Ui_MainMealWindow
+        # Ben Witort helped get page flip to work
         self.mainMealWindow = QtWidgets.QMainWindow()
         self.MealUi = Ui_MainMealWindow()
         self.MealUi.MealWindowUI(self.mainMealWindow)
