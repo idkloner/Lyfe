@@ -1,15 +1,11 @@
 # End of Day Summary Controller
 # Carlos Guerra Samaniego
 
-from eofs import *
+from eofsDatabaseClass import *
 
 class EofsControllerClass:
     @staticmethod
-    def input_mood(Moods):
-        new_mood = setMood(Moods)
-        new_mood.addMoodDatabase()
-
-    def input_reason(Reasons):
-        new_reason = setReason(Reasons)
-        new_reason.addReasonDatabase()
-    
+    def input_eofs(Date, Time, Mood, Reason, Notes):
+        new_Eofs = Eofs(Date, Time, Mood, Reason, Notes)
+        new_Eofs.AddEofsDatabase()
+        new_Eofs.AddEofsList()
