@@ -11,68 +11,52 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
-class Ui_EofsWindow(object):
+class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
         Form.resize(574, 476)
-
         self.HappyButton = QtWidgets.QPushButton(Form)
         self.HappyButton.setGeometry(QtCore.QRect(30, 80, 75, 23))
         self.HappyButton.setObjectName("HappyButton")
-        self.HappyButton.clicked.connect(lambda: self.setMood("Happy"))
-
         self.SadButton = QtWidgets.QPushButton(Form)
         self.SadButton.setGeometry(QtCore.QRect(100, 80, 75, 23))
         self.SadButton.setObjectName("SadButton")
-
         self.MadButton = QtWidgets.QPushButton(Form)
         self.MadButton.setGeometry(QtCore.QRect(170, 80, 75, 23))
         self.MadButton.setObjectName("MadButton")
-
         self.DepressedButton = QtWidgets.QPushButton(Form)
         self.DepressedButton.setGeometry(QtCore.QRect(240, 80, 75, 23))
         self.DepressedButton.setObjectName("DepressedButton")
-
         self.TiredButton = QtWidgets.QPushButton(Form)
         self.TiredButton.setGeometry(QtCore.QRect(310, 80, 75, 23))
         self.TiredButton.setObjectName("TiredButton")
-
         self.ChallengingButton = QtWidgets.QPushButton(Form)
         self.ChallengingButton.setGeometry(QtCore.QRect(380, 80, 75, 23))
         self.ChallengingButton.setObjectName("ChallengingButton")
-
         self.OtherButton = QtWidgets.QPushButton(Form)
         self.OtherButton.setGeometry(QtCore.QRect(450, 80, 75, 23))
         self.OtherButton.setObjectName("OtherButton")
-
         self.WorkButton = QtWidgets.QPushButton(Form)
         self.WorkButton.setGeometry(QtCore.QRect(30, 180, 75, 23))
         self.WorkButton.setObjectName("WorkButton")
-
         self.SchoolButton = QtWidgets.QPushButton(Form)
         self.SchoolButton.setGeometry(QtCore.QRect(100, 180, 75, 23))
         self.SchoolButton.setObjectName("SchoolButton")
-
         self.ParentsButton = QtWidgets.QPushButton(Form)
         self.ParentsButton.setGeometry(QtCore.QRect(170, 180, 75, 23))
         self.ParentsButton.setObjectName("ParentsButton")
-
         self.FriendsButton = QtWidgets.QPushButton(Form)
         self.FriendsButton.setGeometry(QtCore.QRect(240, 180, 75, 23))
         self.FriendsButton.setObjectName("FriendsButton")
-
         self.ResponsibilitiesButton = QtWidgets.QPushButton(Form)
         self.ResponsibilitiesButton.setGeometry(QtCore.QRect(310, 180, 101, 23))
         self.ResponsibilitiesButton.setObjectName("ResponsibilitiesButton")
-
         self.SoButton = QtWidgets.QPushButton(Form)
         self.SoButton.setGeometry(QtCore.QRect(400, 180, 75, 23))
         self.SoButton.setObjectName("SoButton")
-
         self.OtherButton2 = QtWidgets.QPushButton(Form)
         self.OtherButton2.setGeometry(QtCore.QRect(470, 180, 75, 23))
         self.OtherButton2.setObjectName("OtherButton2")
-
         self.label2 = QtWidgets.QLabel(Form)
         self.label2.setGeometry(QtCore.QRect(190, 130, 221, 41))
         font = QtGui.QFont()
@@ -115,8 +99,6 @@ class Ui_EofsWindow(object):
         font.setPointSize(12)
         self.BackButton.setFont(font)
         self.BackButton.setObjectName("BackButton")
-	# made the back button functional -agthomas95
-	self.BackButton.clicked.connect(lambda: self.EOFSToLyfeMainWindow(Form))
         self.DoneButton = QtWidgets.QPushButton(Form)
         self.DoneButton.setGeometry(QtCore.QRect(470, 420, 71, 41))
         font = QtGui.QFont()
@@ -151,24 +133,6 @@ class Ui_EofsWindow(object):
         self.label3.setText(_translate("Form", "Care to elaborate?"))
         self.BackButton.setText(_translate("Form", "Back"))
         self.DoneButton.setText(_translate("Form", "Done"))
-
-
-    def setMood(self, Mood):
-	currentMood = Mood
-	
-# added function to go back to the Lyfe main menu UI -agthomas95
-    def EOFSToLyfeMainWindow(self, Form):
-        from LyfeMainWindow import Ui_MainWindow
-        self.LyfeMainWindow = QtWidgets.QMainWindow()
-        self.ToLyfeMainWindow = Ui_MainWindow()
-        self.ToLyfeMainWindow.setupUi(self.LyfeMainWindow)
-        self.LyfeMainWindow.show()
-        Form.close()
-
-
-
-
-
     
 if __name__ == "__main__":
     import sys
