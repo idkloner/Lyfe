@@ -115,6 +115,8 @@ class Ui_EofsWindow(object):
         font.setPointSize(12)
         self.BackButton.setFont(font)
         self.BackButton.setObjectName("BackButton")
+	# made the back button functional -agthomas95
+	self.BackButton.clicked.connect(lambda: self.EOFSToLyfeMainWindow(Form))
         self.DoneButton = QtWidgets.QPushButton(Form)
         self.DoneButton.setGeometry(QtCore.QRect(470, 420, 71, 41))
         font = QtGui.QFont()
@@ -151,9 +153,17 @@ class Ui_EofsWindow(object):
         self.DoneButton.setText(_translate("Form", "Done"))
 
 
-    def setMood(self, Mood)
+    def setMood(self, Mood):
 	currentMood = Mood
-
+	
+# added function to go back to the Lyfe main menu UI -agthomas95
+    def EOFSToLyfeMainWindow(self, Form):
+        from LyfeMainWindow import Ui_MainWindow
+        self.LyfeMainWindow = QtWidgets.QMainWindow()
+        self.ToLyfeMainWindow = Ui_MainWindow()
+        self.ToLyfeMainWindow.setupUi(self.LyfeMainWindow)
+        self.LyfeMainWindow.show()
+        Form.close()
 
 
 
