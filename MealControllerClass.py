@@ -13,6 +13,7 @@ class MealControllerClass:
 
     @staticmethod
     def add_the_meal(Name, Date, Cal, Fat, Sug, Chol, Sod, Prot, Time, Notes):
+        # Ben Witort helped simplify this method
         new_meal = Meal(Name, Date, Cal, Fat, Sug, Chol, Sod, Prot, Time, Notes)
 
         new_meal.AddMealDatabase()  # adds meal to the data base#.

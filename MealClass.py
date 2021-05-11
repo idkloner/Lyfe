@@ -13,6 +13,7 @@ def LoadMeals():
     file = Xml.parse("databases/meals.xml")
     meals = file.getroot()
 
+    # If MealList has already been loaded, clear it before loading again
     if(MealList):
         MealList.clear()
 
@@ -22,6 +23,7 @@ def LoadMeals():
                              meal.find("Sodium").text, meal.find("Protein").text, meal.find("Time").text,
                              meal.find("Notes").text))
 
+# Finds the proper index for the new meal to be added to database based on Date and Time
 def FindInsertIndex(Date, Time, DatabaseRoot):  #changed values to use split to get the numbers between each symbol.
     MealMonth = Date.split("/")[0]              #Before, MealMonth would get a number + / and cause a base 10 error when
     MealDay = Date.split("/")[1]                #comparing the two days together.
