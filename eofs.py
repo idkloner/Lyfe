@@ -362,7 +362,7 @@ class Ui_Form(object):
     def addSummaryToDatabase(self, eofsForm):
         Notes = self.plainTextEdit.toPlainText()
         Date = datetime.today().strftime("%m/%d/%Y")
-        Time = datetime.today().strftime("%A, %B %d")
+        Time = datetime.today().strftime("%H:%M %p")    # changed format since I gave Ben the wrong time format -agthomas95
         EofsControllerClass.input_eofs(Date, Time, self.currentMood, self.currentReason, Notes)
 
     def retranslateUi(self, Form):
