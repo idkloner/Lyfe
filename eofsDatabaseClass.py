@@ -7,18 +7,18 @@ import xml.etree.ElementTree as Xml
 import os
 
 # Used to hold all summaries in database while user is in summary window
-eofsList = []
+Eofslist = []
 
 # Loads in all of the summaries from the database into EofsList
 def LoadEofs():
     file = Xml.parse("databases/eofs.xml")
     eofs = file.getroot()
 
-    if(eofsList):
-        eofsList.clear()
+    if(Eofslist):
+        Eofslist.clear()
 
     for summary in eofs:
-        eofsList.append(Eofs(eofs.find("Date").text, eofs.find("Time").text, eofs.find("Name").text, eofs.find("Protein").text,
+        Eofslist.append(Eofs(eofs.find("Date").text, eofs.find("Time").text, eofs.find("Name").text, eofs.find("Protein").text,
                              eofs.find("Notes").text))
 
 def FindInsertIndex(Date, Time, DatabaseRoot):
@@ -69,7 +69,7 @@ class Eofs:
     def __init__(self, EofsDate, EofsTime, EofsMood,  EofsReason, EofsNotes):
         self.Date = EofsDate
         self.Time = EofsTime
-        self.Name = EofsMood
+        self.Mood = EofsMood
         self.Reason = EofsReason
         self.Notes = EofsNotes
 
@@ -103,4 +103,4 @@ class Eofs:
 
     # Puts the sumary into a list
     def AddEofsList(self):
-        EofsList.append(self)
+        Eofslist.append(self)

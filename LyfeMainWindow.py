@@ -1,6 +1,6 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-from EOFS.py import *
+from eofs import *
 
 class Ui_MainWindow(object):            #base layout/format: Carlos
     def setupUi(self, MainWindow):
@@ -110,9 +110,9 @@ class Ui_MainWindow(object):            #base layout/format: Carlos
         MainWindow.close()
 
     def eofs_page_flip(self): #added by David
-        self.EofsMealWindow = QtWidgets.QEofsWindow()
-        self.EOFSUi = Ui_EofsWindow()
-        self.EofsUi.setupUi(self.mainEofsWindow)
+        self.EofsWindow = QtWidgets.QMainWindow()
+        self.EofsUi = Ui_EofsWindow()
+        self.EofsUi.setupUi(self.EofsWindow)
         self.EofsWindow.show()
         MainWindow.close()
 

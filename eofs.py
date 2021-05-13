@@ -10,19 +10,21 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 from datetime import *
+from LyfeMainWindow import *
+from EofsController import *
 
 
-class Ui_Form(object):
+class Ui_EofsWindow(object):
 
     currentMood = ""
     currentReason = ""
 
-    def setupUi(self, Form):
-        Form.setObjectName("Form")
-        Form.resize(574, 476)
-        self.HappyButton = QtWidgets.QPushButton(Form)
+    def setupUi(self, EofsForm):
+        EofsForm.setObjectName("EofsForm")
+        EofsForm.resize(574, 476)
+        self.HappyButton = QtWidgets.QPushButton(EofsForm)
         self.HappyButton.setGeometry(QtCore.QRect(30, 80, 75, 23))
-        self.HappyButton.click.connect(self.HappyButton)
+        self.HappyButton.clicked.connect(lambda: self.setMood("Happy"))
         self.HappyButton.setStyleSheet("QPushButton{\n"
 "    border-radius: 8pt;\n"
 "    background-color: rgb(58, 134, 255);\n"
@@ -38,9 +40,9 @@ class Ui_Form(object):
 "    \n"
 "}")
         self.HappyButton.setObjectName("HappyButton")
-        self.SadButton = QtWidgets.QPushButton(Form)
+        self.SadButton = QtWidgets.QPushButton(EofsForm)
         self.SadButton.setGeometry(QtCore.QRect(100, 80, 75, 23))
-        self.SadButton.click.connect(self.SadButton)
+        self.SadButton.clicked.connect(lambda: self.setMood("Sad"))
         self.SadButton.setStyleSheet("QPushButton{\n"
 "    border-radius: 8pt;\n"
 "    background-color: rgb(58, 134, 255);\n"
@@ -56,9 +58,9 @@ class Ui_Form(object):
 "    \n"
 "}")
         self.SadButton.setObjectName("SadButton")
-        self.MadButton = QtWidgets.QPushButton(Form)
+        self.MadButton = QtWidgets.QPushButton(EofsForm)
         self.MadButton.setGeometry(QtCore.QRect(170, 80, 75, 23))
-        self.MadButton.click.connect(self.MadButton)
+        self.MadButton.clicked.connect(lambda: self.setMood("Mad"))
         self.MadButton.setStyleSheet("QPushButton{\n"
 "    border-radius: 8pt;\n"
 "    background-color: rgb(58, 134, 255);\n"
@@ -74,9 +76,9 @@ class Ui_Form(object):
 "    \n"
 "}")
         self.MadButton.setObjectName("MadButton")
-        self.DepressedButton = QtWidgets.QPushButton(Form)
+        self.DepressedButton = QtWidgets.QPushButton(EofsForm)
         self.DepressedButton.setGeometry(QtCore.QRect(240, 80, 75, 23))
-        self.DepressedButton.clicked.connect(self.DepressedButton)
+        self.DepressedButton.clicked.connect(lambda: self.setMood("Depressed"))
         self.DepressedButton.setStyleSheet("QPushButton{\n"
 "    border-radius: 8pt;\n"
 "    background-color: rgb(58, 134, 255);\n"
@@ -92,9 +94,9 @@ class Ui_Form(object):
 "    \n"
 "}")
         self.DepressedButton.setObjectName("DepressedButton")
-        self.TiredButton = QtWidgets.QPushButton(Form)
+        self.TiredButton = QtWidgets.QPushButton(EofsForm)
         self.TiredButton.setGeometry(QtCore.QRect(310, 80, 75, 23))
-        self.TiredButton.click.connect(self.TiredButton)
+        self.TiredButton.clicked.connect(lambda: self.setMood("Tired"))
         self.TiredButton.setStyleSheet("QPushButton{\n"
 "    border-radius: 8pt;\n"
 "    background-color: rgb(58, 134, 255);\n"
@@ -110,9 +112,9 @@ class Ui_Form(object):
 "    \n"
 "}")
         self.TiredButton.setObjectName("TiredButton")
-        self.ChallengingButton = QtWidgets.QPushButton(Form)
+        self.ChallengingButton = QtWidgets.QPushButton(EofsForm)
         self.ChallengingButton.setGeometry(QtCore.QRect(380, 80, 75, 23))
-        self.ChallengingButton.click.connect(self.ChallengingButton)
+        self.ChallengingButton.clicked.connect(lambda: self.setMood("Challenging"))
         self.ChallengingButton.setStyleSheet("QPushButton{\n"
 "    border-radius: 8pt;\n"
 "    background-color: rgb(58, 134, 255);\n"
@@ -128,9 +130,9 @@ class Ui_Form(object):
 "    \n"
 "}")
         self.ChallengingButton.setObjectName("ChallengingButton")
-        self.OtherButton = QtWidgets.QPushButton(Form)
+        self.OtherButton = QtWidgets.QPushButton(EofsForm)
         self.OtherButton.setGeometry(QtCore.QRect(450, 80, 75, 23))
-        self.OtherButton.click.connect(self.OtherButton)
+        self.OtherButton.clicked.connect(lambda: self.setMood("Other"))
         self.OtherButton.setStyleSheet("QPushButton{\n"
 "    border-radius: 8pt;\n"
 "    background-color: rgb(58, 134, 255);\n"
@@ -146,9 +148,9 @@ class Ui_Form(object):
 "    \n"
 "}")
         self.OtherButton.setObjectName("OtherButton")
-        self.WorkButton = QtWidgets.QPushButton(Form)
+        self.WorkButton = QtWidgets.QPushButton(EofsForm)
         self.WorkButton.setGeometry(QtCore.QRect(30, 180, 75, 23))
-        self.WorkButton.click.connect(self.WorkButton)
+        self.WorkButton.clicked.connect(lambda: self.setReason("Work"))
         self.WorkButton.setStyleSheet("QPushButton{\n"
 "    border-radius: 8pt;\n"
 "    background-color: rgb(58, 134, 255);\n"
@@ -164,9 +166,9 @@ class Ui_Form(object):
 "    \n"
 "}")
         self.WorkButton.setObjectName("WorkButton")
-        self.SchoolButton = QtWidgets.QPushButton(Form)
+        self.SchoolButton = QtWidgets.QPushButton(EofsForm)
         self.SchoolButton.setGeometry(QtCore.QRect(100, 180, 75, 23))
-        self.SchoolButton.click.connect(self.SchoolButton)
+        self.SchoolButton.clicked.connect(lambda: self.setReason("School"))
         self.SchoolButton.setStyleSheet("QPushButton{\n"
 "    border-radius: 8pt;\n"
 "    background-color: rgb(58, 134, 255);\n"
@@ -181,9 +183,9 @@ class Ui_Form(object):
 "    \n"
 "}")
         self.SchoolButton.setObjectName("SchoolButton")
-        self.ParentsButton = QtWidgets.QPushButton(Form)
+        self.ParentsButton = QtWidgets.QPushButton(EofsForm)
         self.ParentsButton.setGeometry(QtCore.QRect(170, 180, 75, 23))
-        self.ParentsButton.click.connect(self.ParentsButton)
+        self.ParentsButton.clicked.connect(lambda: self.setReason("Parents"))
         self.ParentsButton.setStyleSheet("QPushButton{\n"
 "    border-radius: 8pt;\n"
 "    background-color: rgb(58, 134, 255);\n"
@@ -199,9 +201,9 @@ class Ui_Form(object):
 "    \n"
 "}")
         self.ParentsButton.setObjectName("ParentsButton")
-        self.FriendsButton = QtWidgets.QPushButton(Form)
+        self.FriendsButton = QtWidgets.QPushButton(EofsForm)
         self.FriendsButton.setGeometry(QtCore.QRect(240, 180, 75, 23))
-        self.FriendssButton.click.connect(self.FriendsButton)
+        self.FriendsButton.clicked.connect(lambda: self.setReason("Friends"))
         self.FriendsButton.setStyleSheet("QPushButton{\n"
 "    border-radius: 8pt;\n"
 "    background-color: rgb(58, 134, 255);\n"
@@ -217,9 +219,9 @@ class Ui_Form(object):
 "    \n"
 "}")
         self.FriendsButton.setObjectName("FriendsButton")
-        self.ResponsibilitiesButton = QtWidgets.QPushButton(Form)
+        self.ResponsibilitiesButton = QtWidgets.QPushButton(EofsForm)
         self.ResponsibilitiesButton.setGeometry(QtCore.QRect(310, 180, 101, 23))
-        self.ResponsibilitiesButton.click.connect(self.ResponsibilitiesButton)
+        self.ResponsibilitiesButton.clicked.connect(lambda: self.setReason("Responsibilities"))
         self.ResponsibilitiesButton.setStyleSheet("QPushButton{\n"
 "    border-radius: 8pt;\n"
 "    background-color: rgb(58, 134, 255);\n"
@@ -235,9 +237,9 @@ class Ui_Form(object):
 "    \n"
 "}")
         self.ResponsibilitiesButton.setObjectName("ResponsibilitiesButton")
-        self.SoButton = QtWidgets.QPushButton(Form)
+        self.SoButton = QtWidgets.QPushButton(EofsForm)
         self.SoButton.setGeometry(QtCore.QRect(400, 180, 75, 23))
-        self.SoButton.click.connect(self.SoButton)
+        self.SoButton.clicked.connect(lambda: self.setReason("S/O"))
         self.SoButton.setStyleSheet("QPushButton{\n"
 "    border-radius: 8pt;\n"
 "    background-color: rgb(58, 134, 255);\n"
@@ -253,9 +255,9 @@ class Ui_Form(object):
 "    \n"
 "}")
         self.SoButton.setObjectName("SoButton")
-        self.OtherButton2 = QtWidgets.QPushButton(Form)
+        self.OtherButton2 = QtWidgets.QPushButton(EofsForm)
         self.OtherButton2.setGeometry(QtCore.QRect(470, 180, 75, 23))
-        self.OtherButton2.click.connect(self.OtherButton2)
+        self.OtherButton2.clicked.connect(lambda: self.setReason("Other"))
         self.OtherButton2.setStyleSheet("QPushButton{\n"
 "    border-radius: 8pt;\n"
 "    background-color: rgb(58, 134, 255);\n"
@@ -271,7 +273,7 @@ class Ui_Form(object):
 "    \n"
 "}")
         self.OtherButton2.setObjectName("OtherButton2")
-        self.label2 = QtWidgets.QLabel(Form)
+        self.label2 = QtWidgets.QLabel(EofsForm)
         self.label2.setGeometry(QtCore.QRect(190, 130, 221, 41))
         font = QtGui.QFont()
         font.setFamily("Rockwell")
@@ -280,7 +282,7 @@ class Ui_Form(object):
         font.setWeight(75)
         self.label2.setFont(font)
         self.label2.setObjectName("label2")
-        self.label1 = QtWidgets.QLabel(Form)
+        self.label1 = QtWidgets.QLabel(EofsForm)
         self.label1.setGeometry(QtCore.QRect(160, 40, 281, 21))
         font = QtGui.QFont()
         font.setFamily("Rockwell")
@@ -289,14 +291,14 @@ class Ui_Form(object):
         font.setWeight(75)
         self.label1.setFont(font)
         self.label1.setObjectName("label1")
-        self.plainTextEdit = QtWidgets.QPlainTextEdit(Form)
+        self.plainTextEdit = QtWidgets.QPlainTextEdit(EofsForm)
         self.plainTextEdit.setGeometry(QtCore.QRect(30, 250, 511, 131))
         font = QtGui.QFont()
         font.setFamily("MS Sans Serif")
         font.setPointSize(15)
         self.plainTextEdit.setFont(font)
         self.plainTextEdit.setObjectName("plainTextEdit")
-        self.label3 = QtWidgets.QLabel(Form)
+        self.label3 = QtWidgets.QLabel(EofsForm)
         self.label3.setGeometry(QtCore.QRect(220, 220, 161, 20))
         font = QtGui.QFont()
         font.setFamily("Rockwell")
@@ -306,13 +308,13 @@ class Ui_Form(object):
         font.setWeight(75)
         self.label3.setFont(font)
         self.label3.setObjectName("label3")
-        self.BackButton = QtWidgets.QPushButton(Form)
+        self.BackButton = QtWidgets.QPushButton(EofsForm)
         self.BackButton.setGeometry(QtCore.QRect(30, 420, 71, 41))
         font = QtGui.QFont()
         font.setFamily("Rockwell")
         font.setPointSize(12)
         self.BackButton.setFont(font)
-        self.BackButton.click.connect(self.BackButton)
+        self.BackButton.clicked.connect(lambda: self.main_page_flip(EofsForm))
         self.BackButton.setStyleSheet("QPushButton{\n"
 "    border-radius: 8pt;\n"
 "    background-color: rgb(0, 0, 0);\n"
@@ -327,13 +329,13 @@ class Ui_Form(object):
 "    \n"
 "}")
         self.BackButton.setObjectName("BackButton")
-        self.DoneButton = QtWidgets.QPushButton(Form)
+        self.DoneButton = QtWidgets.QPushButton(EofsForm)
         self.DoneButton.setGeometry(QtCore.QRect(470, 420, 71, 41))
         font = QtGui.QFont()
         font.setFamily("Rockwell")
         font.setPointSize(12)
         self.DoneButton.setFont(font)
-        self.DoneButton.click.connect(self.DoneButton)
+        self.DoneButton.clicked.connect(lambda: self.addSummaryToDatabase(EofsForm))
         self.DoneButton.setStyleSheet("QPushButton{\n"
 "    border-radius: 8pt;\n"
 "    background-color: rgb(0, 0, 0);\n"
@@ -349,8 +351,15 @@ class Ui_Form(object):
 "}")
         self.DoneButton.setObjectName("DoneButton")
 
-        self.retranslateUi(Form)
-        QtCore.QMetaObject.connectSlotsByName(Form)
+        self.retranslateUi(EofsForm)
+        QtCore.QMetaObject.connectSlotsByName(EofsForm)
+
+    def main_page_flip(self, EofsForm): #added by David
+        self.MainWindow = QtWidgets.QMainWindow()
+        self.MainUi = Ui_MainWindow()
+        self.MainUi.setupUi(self.MainWindow)
+        self.MainWindow.show()
+        EofsForm.close()
 
     def setMood(self, Mood):
         self.currentMood = Mood
@@ -359,41 +368,42 @@ class Ui_Form(object):
     def setReason(self, Reason):
         self.currentReason = Reason
 
-    def addSummaryToDatabase(self, eofsForm):
+    def addSummaryToDatabase(self, EofsForm):
         Notes = self.plainTextEdit.toPlainText()
         Date = datetime.today().strftime("%m/%d/%Y")
         Time = datetime.today().strftime("%H:%M %p")    # changed format since I gave Ben the wrong time format -agthomas95
         EofsControllerClass.input_eofs(Date, Time, self.currentMood, self.currentReason, Notes)
+        self.main_page_flip(EofsForm)
 
-    def retranslateUi(self, Form):
+    def retranslateUi(self, EofsForm):
         _translate = QtCore.QCoreApplication.translate
-        Form.setWindowTitle(_translate("Form", "Form"))
-        self.HappyButton.setText(_translate("Form", "Happy"))
-        self.SadButton.setText(_translate("Form", "Sad"))
-        self.MadButton.setText(_translate("Form", "Mad"))
-        self.DepressedButton.setText(_translate("Form", "Depressed"))
-        self.TiredButton.setText(_translate("Form", "Tired"))
-        self.ChallengingButton.setText(_translate("Form", "Challenging"))
-        self.OtherButton.setText(_translate("Form", "Other"))
-        self.WorkButton.setText(_translate("Form", "Work"))
-        self.SchoolButton.setText(_translate("Form", "School"))
-        self.ParentsButton.setText(_translate("Form", "Parents"))
-        self.FriendsButton.setText(_translate("Form", "Friends"))
-        self.ResponsibilitiesButton.setText(_translate("Form", "Responsibilities"))
-        self.SoButton.setText(_translate("Form", "S/O"))
-        self.OtherButton2.setText(_translate("Form", "Other"))
-        self.label2.setText(_translate("Form", "What might be the cause?"))
-        self.label1.setText(_translate("Form", "How was your overall mood today?"))
-        self.label3.setText(_translate("Form", "Care to elaborate?"))
-        self.BackButton.setText(_translate("Form", "Back"))
-        self.DoneButton.setText(_translate("Form", "Done"))
+        EofsForm.setWindowTitle(_translate("EofsForm", "EofsForm"))
+        self.HappyButton.setText(_translate("EofsForm", "Happy"))
+        self.SadButton.setText(_translate("EofsForm", "Sad"))
+        self.MadButton.setText(_translate("EofsForm", "Mad"))
+        self.DepressedButton.setText(_translate("EofsForm", "Depressed"))
+        self.TiredButton.setText(_translate("EofsForm", "Tired"))
+        self.ChallengingButton.setText(_translate("EofsForm", "Challenging"))
+        self.OtherButton.setText(_translate("EofsForm", "Other"))
+        self.WorkButton.setText(_translate("EofsForm", "Work"))
+        self.SchoolButton.setText(_translate("EofsForm", "School"))
+        self.ParentsButton.setText(_translate("EofsForm", "Parents"))
+        self.FriendsButton.setText(_translate("EofsForm", "Friends"))
+        self.ResponsibilitiesButton.setText(_translate("EofsForm", "Responsibilities"))
+        self.SoButton.setText(_translate("EofsForm", "S/O"))
+        self.OtherButton2.setText(_translate("EofsForm", "Other"))
+        self.label2.setText(_translate("EofsForm", "What might be the cause?"))
+        self.label1.setText(_translate("EofsForm", "How was your overall mood today?"))
+        self.label3.setText(_translate("EofsForm", "Care to elaborate?"))
+        self.BackButton.setText(_translate("EofsForm", "Back"))
+        self.DoneButton.setText(_translate("EofsForm", "Done"))
 
 
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
-    Form = QtWidgets.QWidget()
+    EofsForm = QtWidgets.QWidget()
     ui = Ui_Form()
-    ui.setupUi(Form)
-    Form.show()
+    ui.setupUi(EofsForm)
+    EofsForm.show()
     sys.exit(app.exec_())
