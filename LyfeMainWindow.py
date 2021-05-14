@@ -1,7 +1,5 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
-from eofs import *
-
 class Ui_MainWindow(object):            #base layout/format: Carlos
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
@@ -21,14 +19,14 @@ class Ui_MainWindow(object):            #base layout/format: Carlos
         self.MealTrackerBtn.setFont(font)
         self.MealTrackerBtn.setObjectName("MealTrackerBtn")
         self.EndOfDayBtn = QtWidgets.QPushButton(self.centralwidget)
-        self.MealTrackerBtn.clicked.connect(self.meal_page_flip)		#added by David to create page flip
+        self.MealTrackerBtn.clicked.connect(lambda: self.meal_page_flip(MainWindow))		#added by David to create page flip
         self.EndOfDayBtn.setGeometry(QtCore.QRect(170, 300, 131, 51))
         font = QtGui.QFont()
         font.setPointSize(12)
         self.EndOfDayBtn.setFont(font)
         self.EndOfDayBtn.setObjectName("EndOfDayBtn")
         #self.TaskTrackerBtn = QtWidgets.QPushButton(self.centralwidget)
-        self.EndOfDayBtn.clicked.connect(self.eofs_page_flip)
+        self.EndOfDayBtn.clicked.connect(lambda: self.eofs_page_flip(MainWindow))
         #self.TaskTrackerBtn.setGeometry(QtCore.QRect(170, 230, 131, 51))
         #font = QtGui.QFont()
         #font.setPointSize(12)
@@ -82,7 +80,7 @@ class Ui_MainWindow(object):            #base layout/format: Carlos
         MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow"))
         self.LyfeTitleLbl.setText(_translate("MainWindow", "Lyfe"))
         self.MealTrackerBtn.setText(_translate("MainWindow", "Meal Tracker"))
-        #self.EndOfDayBtn.setText(_translate("MainWindow", "End of Day"))
+        self.EndOfDayBtn.setText(_translate("MainWindow", "End of Day"))
         #self.TaskTrackerBtn.setText(_translate("MainWindow", "Task Tracker"))
         self.SettingsBtn.setText(_translate("MainWindow", "Settings"))
         self.menuFile.setTitle(_translate("MainWindow", "File"))
@@ -100,6 +98,7 @@ class Ui_MainWindow(object):            #base layout/format: Carlos
         self.actionClose.setText(_translate("MainWindow", "Close"))
         self.actionClose.setShortcut(_translate("MainWindow", "Ctrl+F4"))
 
+    # Ben Witort got both the meal and eofs pages to work when the user tries to open them a second time
     def meal_page_flip(self, MainWindow): #made change to open main meal window instead. -agthomas95
         from MainMealWindow import Ui_MainMealWindow
         # Ben Witort helped get page flip to work
@@ -109,14 +108,13 @@ class Ui_MainWindow(object):            #base layout/format: Carlos
         self.mainMealWindow.show()
         MainWindow.close()
 
-    def eofs_page_flip(self): #added by David
+    def eofs_page_flip(self, MainWindow): #added by David
+        from eofs import Ui_EofsWindow
         self.EofsWindow = QtWidgets.QMainWindow()
         self.EofsUi = Ui_EofsWindow()
         self.EofsUi.setupUi(self.EofsWindow)
         self.EofsWindow.show()
         MainWindow.close()
-
-
 
 
 if __name__ == "__main__":
