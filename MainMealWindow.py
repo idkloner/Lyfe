@@ -26,6 +26,8 @@
 #               calorie goal stored in the database that'll be called in this class to change the calorie text shown
 #               around the pie graph.
 
+# 5/18/21:      Fixed pie chart only showing half of each color when any amount of meals are added
+
 from datetime import datetime
 
 from PyQt5 import QtCore, QtGui, QtWidgets
@@ -102,7 +104,8 @@ class Ui_MainMealWindow(object):
 
         self.calorieSeries = QPieSeries()   # class for creating pie chart
         self.calorieSeries.append("Calories consumed", MealControllerClass.CalConsumedCount)
-        self.calorieSeries.append("Calories left", int() - MealControllerClass.CalConsumedCount)
+        self.calorieSeries.append("Calories left", int(Xml.parse("databases/meals.xml").getroot().find("CalorieGoal/Goal").text)
+                                  - MealControllerClass.CalConsumedCount)
 
         self.calorieSlice = self.calorieSeries.slices()[0]  # slice for calories consumed
         self.calorieSlice.setPen(QPen(Qt.darkGray, 1))
