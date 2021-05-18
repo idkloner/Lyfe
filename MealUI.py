@@ -18,6 +18,8 @@
 #           Added a function to make a new window back to the main meal UI to be called in multiple areas.
 #           Added a back button to go back to the main meal UI if the user doesn't want to enter a meal.
 
+# Worked on making the text boxes for the notes and nutrition facts. - David T
+
 from PyQt5 import QtCore, QtGui, QtWidgets
 from MealControllerClass import *
 from datetime import *
@@ -136,6 +138,7 @@ class Ui_MealWindow(object):
         QtCore.QMetaObject.connectSlotsByName(MealForm)
 
     # adds meal information to the database
+    #Worked on By David, Ben, Anthony
     def addMealtoDatabase(self, MealForm):
         Name = self.MealTempName.text()
         Date = self.MealTempDate.text()
