@@ -1,6 +1,6 @@
-#  Written by:
+#  Written by: Erika Reynoso
 #  Tested by: Everyone
-#  Debugged by:
+#  Debugged by: Anthony Thomas
 
 
 
