@@ -1,4 +1,8 @@
-# Anthony Thomas
+#  Written By: Anthony Thomas
+#  Tested by: Everyone
+#  Debugged by:
+
+
 
 # The UI for the user to add a meal into their database containing when the meal was consumed and nutritional info.
 

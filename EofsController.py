@@ -1,3 +1,7 @@
+#  Written By: Carlos Guerra Samaniego
+#  Tested by: Carlos, David, Ben, Anthony, Erika
+#  Debugged by: Carlos
+
 # End of Day Summary Controller
 # Carlos Guerra Samaniego
 

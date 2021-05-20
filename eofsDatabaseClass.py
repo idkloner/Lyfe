@@ -1,4 +1,8 @@
-# David Toepfer, Used Ben's Meal class as a base reference
+# Written By:David Toepfer
+#  Tested by: Everyone
+#  Debugged by: David and Ben
+
+# Used Ben's Meal class as a base reference
 
 
 # Library that handles creating and interacting with XML files

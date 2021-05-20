@@ -1,3 +1,7 @@
+#  Written By: Carols, Erika, David
+#  Tested by: Everyone
+#  Debugged by:
+
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 class Ui_MainWindow(object):            #base layout/format: Carlos

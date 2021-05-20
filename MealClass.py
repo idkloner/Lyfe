@@ -1,3 +1,7 @@
+#  Written By: Ben Witort and Anthony Thomas
+#  Tested by: Everyone
+#  Debugged by: 
+
 # Ben Witort, Anthony Thomas
 
 # Library that handles creating and interacting with XML files

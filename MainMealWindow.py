@@ -1,3 +1,7 @@
+#  Written By: Anthony Thomas
+#  Tested by: Everyone
+#  Debugged by: Anthony
+
 # Anthony Thomas
 
 # Generates the UI that shows the list of meals added, a pie graph to show calories consumed for the day and remaining
