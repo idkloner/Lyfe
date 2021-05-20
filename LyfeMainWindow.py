@@ -1,6 +1,6 @@
-#  Written By: Carols, Erika, David
+#  Written By: Carlos, Erika, David, Anthony
 #  Tested by: Everyone
-#  Debugged by:
+#  Debugged by: Carlos, Erika, David, Anthony
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
