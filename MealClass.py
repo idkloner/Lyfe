@@ -1,8 +1,6 @@
 #  Written By: Ben Witort and Anthony Thomas
 #  Tested by: Everyone
-#  Debugged by: 
-
-# Ben Witort, Anthony Thomas
+#  Debugged by: Ben Witort, Anthony Thomas, David Toepfer
 
 # Library that handles creating and interacting with XML files
 import xml.etree.ElementTree as Xml
